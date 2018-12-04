@@ -15,6 +15,7 @@
 #include <celmodel/mesh.h>
 #include <Eigen/Geometry>
 
+class Renderer;
 
 class RenderContext
 {
@@ -51,6 +52,8 @@ class RenderContext
     void setCameraOrientation(const Eigen::Quaternionf& q);
     Eigen::Quaternionf getCameraOrientation() const;
 
+    void setRenderer(const Renderer* r) { renderer = r; }
+
  private:
     const cmod::Material* material{ nullptr };
     bool locked{ false };
@@ -59,6 +62,7 @@ class RenderContext
     Eigen::Quaternionf cameraOrientation;  // required for drawing billboards
 
  protected:
+    const Renderer* renderer { nullptr };
     bool usePointSize{ false };
     bool useNormals{ true };
     bool useColors{ false };

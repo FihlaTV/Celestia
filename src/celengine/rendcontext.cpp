@@ -15,6 +15,7 @@
 #include "body.h"
 #include <GL/glew.h>
 #include "vecgl.h"
+#include "render.h"
 
 using namespace cmod;
 using namespace Eigen;
@@ -483,7 +484,8 @@ GLSL_RenderContext::makeCurrent(const Material& m)
     }
 
     // Get a shader for the current rendering configuration
-    CelestiaGLProgram* prog = GetShaderManager().getShader(shaderProps);
+    assert(renderer != nullptr);
+    CelestiaGLProgram* prog = renderer->getShaderManager().getShader(shaderProps);
     if (prog == nullptr)
         return;
 
@@ -696,7 +698,8 @@ GLSLUnlit_RenderContext::makeCurrent(const Material& m)
         shaderProps.texUsage |= ShaderProperties::VertexColors;
 
     // Get a shader for the current rendering configuration
-    CelestiaGLProgram* prog = GetShaderManager().getShader(shaderProps);
+    assert(renderer != nullptr);
+    CelestiaGLProgram* prog = renderer->getShaderManager().getShader(shaderProps);
     if (prog == nullptr)
         return;
 

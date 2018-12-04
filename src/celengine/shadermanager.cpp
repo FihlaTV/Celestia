@@ -53,14 +53,6 @@ static const char* errorFragmentShaderSource =
 
 static const string CommonHeader("#version 120\n");
 
-ShaderManager&
-GetShaderManager()
-{
-    static ShaderManager g_ShaderManager;
-
-    return g_ShaderManager;
-}
-
 
 ShaderProperties::ShaderProperties() :
     nLights(0),
